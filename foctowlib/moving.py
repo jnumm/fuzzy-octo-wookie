@@ -15,7 +15,8 @@ class Moving(pygame.sprite.Sprite):
         if self.type == const.MOVING_BG:
             self.image, self.rect = misc.load_image("bg.png")
         elif self.type == const.MOVING_TRAINCAR:
-            self.image, self.rect = misc.load_image("player.png")
+            self.image, self.rect = misc.load_image("car1.png")
+            self.rect.centerx = const.DISPLAY_WIDTH / 2
         self.rect.top = ypos
 
     def update(self):
