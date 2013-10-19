@@ -1,0 +1,3 @@
+# -*- coding: utf-8 -*-
+
+DISPLAY_SIZE = DISPLAY_WIDTH, DISPLAY_HEIGTH = 640, 800
