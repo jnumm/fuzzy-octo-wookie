@@ -6,19 +6,19 @@ import const
 from player import *
 import traincar
 
-bg = pygame.image.load("assets\img\\bg.png")
-
 def main():
     pygame.init()
     display = pygame.display.set_mode(const.DISPLAY_SIZE)
 
     pygame.display.set_caption("GameJam")
 
+    bg, _ = misc.load_image("bg.png")
+
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
 
     car1 = traincar.TrainCar()
-    car2 = traincar.TrainCar(200)
+    car2 = traincar.TrainCar(car1.rect.heigth)
 
     allsprites = pygame.sprite.RenderPlain((player, car1, car2))
 
