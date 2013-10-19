@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""This module contains the main game function.
+"""
 
 import pygame
 
@@ -7,10 +9,14 @@ from player import *
 import traincar
 
 def main():
+    """This is the main game function. It will initialize and run
+    the game itself.
+    """
+    # Initializing pygame and pygame-related variables.
     pygame.init()
     display = pygame.display.set_mode(const.DISPLAY_SIZE)
-
     pygame.display.set_caption("GameJam")
+    clock = pygame.time.Clock()
 
     bg, _ = misc.load_image("bg.png")
 
@@ -22,13 +28,13 @@ def main():
 
     allsprites = pygame.sprite.RenderPlain((player, car1, car2))
 
-    clock = pygame.time.Clock()
-
+    # This is the main loop.
     while True:
         clock.tick(60)
 
-        for tapahtuma in pygame.event.get():
-            if tapahtuma.type == pygame.QUIT:
+        # Quit the program on a pygame.QUIT event.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 return
 
         allsprites.update()
