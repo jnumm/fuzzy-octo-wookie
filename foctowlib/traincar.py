@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
+"""A moving train car.
+"""
 
 import pygame
 
+import const
 import misc
 
 class TrainCar(pygame.sprite.Sprite):
-    def __init__(self, ypos, display_heigth):
+    def __init__(self, ypos=0):
         pygame.sprite.Sprite.__init__(self)
         self.image, self.rect = misc.load_image("player.png")
         self.rect.top = ypos
-        self.display_heigth = display_heigth
 
     def update(self):
         self.rect.move_ip(0, 2)
-        if self.rect.top > self.display_heigth:
+        if self.rect.top > const.DISPLAY_HEIGTH:
             self.rect.bottom = 0
