@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""The player Sprite. It will listen to user input.
+"""
 
 import pygame
 
