@@ -4,6 +4,7 @@
 
 import pygame
 
+import back
 import const
 from player import *
 import traincar
@@ -18,7 +19,8 @@ def main():
     pygame.display.set_caption("GameJam")
     clock = pygame.time.Clock()
 
-    bg, _ = misc.load_image("bg.png")
+    bg1 = back.Back()
+    bg2 = back.Back(bg1.rect.height)
 
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
@@ -26,7 +28,7 @@ def main():
     car1 = traincar.TrainCar()
     car2 = traincar.TrainCar(car1.rect.height)
 
-    allsprites = pygame.sprite.RenderPlain((player, car1, car2))
+    allsprites = pygame.sprite.RenderPlain((bg1, bg2, player, car1, car2))
 
     # This is the main loop.
     while True:
@@ -40,6 +42,5 @@ def main():
         allsprites.update()
 
         display.fill((0, 0, 0))
-        display.blit(bg, (0, 0))
         allsprites.draw(display)
         pygame.display.flip()
