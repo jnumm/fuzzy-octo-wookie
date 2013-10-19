@@ -3,6 +3,7 @@
 import pygame
 
 from player import *
+import traincar
 
 DISPLAY_SIZE = DISPLAY_WIDTH, DISPLAY_HEIGTH = 640, 800
 
@@ -19,7 +20,12 @@ def main():
 
     player = Player()
     player.rect.centery = DISPLAY_HEIGTH / 2
-    allsprites = pygame.sprite.RenderPlain((player))
+
+    car1 = traincar.TrainCar(0, DISPLAY_HEIGTH)
+    car2 = traincar.TrainCar(200, DISPLAY_HEIGTH)
+
+    allsprites = pygame.sprite.RenderPlain((player, car1, car2))
+
     clock = pygame.time.Clock()
 
     while True:
