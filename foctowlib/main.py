@@ -4,10 +4,9 @@
 
 import pygame
 
-import back
 import const
+import moving
 from player import *
-import traincar
 
 def main():
     """This is the main game function. It will initialize and run
@@ -19,16 +18,17 @@ def main():
     pygame.display.set_caption("GameJam")
     clock = pygame.time.Clock()
 
-    bg1 = back.Back()
-    bg2 = back.Back(bg1.rect.height)
+    bg1 = moving.Moving(const.MOVING_BG)
+    bg2 = moving.Moving(const.MOVING_BG, bg1.rect.height)
+    bg_sprites = pygame.sprite.RenderPlain((bg1, bg2))
+
+    car1 = moving.Moving(const.MOVING_TRAINCAR)
+    car2 = moving.Moving(const.MOVING_TRAINCAR, car1.rect.height)
+    train_sprites = pygame.sprite.RenderPlain((car1, car2))
 
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
-
-    car1 = traincar.TrainCar()
-    car2 = traincar.TrainCar(car1.rect.height)
-
-    allsprites = pygame.sprite.RenderPlain((bg1, bg2, player, car1, car2))
+    character_sprites = pygame.sprite.RenderPlain((player))
 
     # This is the main loop.
     while True:
@@ -39,8 +39,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        allsprites.update()
+        bg_sprites.update()
+        train_sprites.update()
+        character_sprites.update()
 
         display.fill((0, 0, 0))
-        allsprites.draw(display)
+        bg_sprites.draw(display)
+        train_sprites.draw(display)
+        character_sprites.draw(display)
         pygame.display.flip()
