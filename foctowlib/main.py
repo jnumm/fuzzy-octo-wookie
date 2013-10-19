@@ -18,7 +18,7 @@ def main():
     player.rect.centery = const.DISPLAY_HEIGTH / 2
 
     car1 = traincar.TrainCar()
-    car2 = traincar.TrainCar(car1.rect.heigth)
+    car2 = traincar.TrainCar(car1.rect.height)
 
     allsprites = pygame.sprite.RenderPlain((player, car1, car2))
 
