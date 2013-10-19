@@ -6,7 +6,6 @@ import const
 from player import *
 import traincar
 
-ukko = pygame.image.load("C:\Users\Pelitalo\Documents\GameJam\\assets\img\player.png")
 bg = pygame.image.load("assets\img\\bg.png")
 
 def main():
@@ -14,8 +13,6 @@ def main():
     display = pygame.display.set_mode(const.DISPLAY_SIZE)
 
     pygame.display.set_caption("GameJam")
-    
-    sijainti = [50, 50]
 
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
@@ -38,6 +35,5 @@ def main():
 
         display.fill((0, 0, 0))
         display.blit(bg, (0, 0))
-        display.blit(ukko, sijainti)
         allsprites.draw(display)
         pygame.display.flip()
