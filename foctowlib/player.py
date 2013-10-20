@@ -24,13 +24,13 @@ class Player(pygame.sprite.Sprite):
         self._last_update = 0
         self._frame = 0
         self.frame_decrease = False
-        
+
         self.jump = 0
         self.windspeed = 0
 
     def update(self):
         keys = pygame.key.get_pressed()
-        
+
         if self.jump > 0 and self.jump < 30:
             self.rect.move_ip(0, -1)
             self.image = pygame.transform.scale(self.orig_image,
@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         elif self.jump == 60:
             self.image = self.orig_image
             self.jump = 0
-        
+
         if keys[pygame.K_LEFT] and self.jump == 0:
             self.rect.move_ip(-2, 0)
         if keys[pygame.K_RIGHT] and self.jump == 0:
@@ -66,8 +66,6 @@ class Player(pygame.sprite.Sprite):
             elif self._frame == 0:
                 self.frame_decrease = False
 
-            print self._frame
             self.image = self._images[self._frame]
-            
-            
+
             self._last_update = t
