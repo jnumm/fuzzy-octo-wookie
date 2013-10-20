@@ -29,6 +29,4 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT]:
             self.rect.move_ip(2, 0)
         if keys[pygame.K_SPACE] and self.jump == 0:
-            self.jump = 1 
-            
-        print self.jump
+            self.jump = 1
