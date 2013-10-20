@@ -85,9 +85,19 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        if choppa.rect.contains(player.rect):
+        if (not choppa.is_landing() and
+                choppa.rect.contains(player.rect) and
+                player.alive() and the_box.alive()):
+            choppa.land()
+        
+        if (choppa.ready_to_pick() and
+                player.alive() and the_box.alive()):
             player.kill()
             the_box.kill()
+
+        if choppa.rect.right < 0:
+            gamewonloop = False
+            gameoverloop = True
         
         chopper_sprites.update()
 
