@@ -12,9 +12,20 @@ from . import misc
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image, self.rect = misc.load_image('player.png')
+        self._images = misc.load_sliced_sprites(100, 70, "player_ng.png")
+
+        self.rect = self._images[0].get_rect()
         self.rect.centerx = const.DISPLAY_WIDTH / 2
-        self.orig_image = self.image
+
+        self.orig_image = self._images[0]
+
+        # Track the time we started, and the time between updates.
+        # Then we can figure out when we have to switch the image.
+        self._start = pygame.time.get_ticks()
+        self._delay = 60
+        self._last_update = 0
+        self._frame = 0
+
         self.jump = 0
 
     def update(self):
@@ -42,8 +53,15 @@ class Player(pygame.sprite.Sprite):
             self.rect.move_ip(2, 0)
         if keys[pygame.K_SPACE] and self.jump == 0:
             self.jump = 1
-            
+
         if random.random() < 0.1:
             self.windspeed = random.randint(1, 3)
             if self.windspeed > 0:
                 self.rect.move_ip(self.windspeed * 2, 0) 
+
+        t = pygame.time.get_ticks()
+        if not self.jump and t - self._last_update > self._delay:
+            self._frame += 1
+            if self._frame >= len(self._images): self._frame = 0
+            self.image = self._images[self._frame]
+            self._last_update = t
