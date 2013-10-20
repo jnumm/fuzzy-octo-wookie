@@ -110,13 +110,15 @@ def main():
 
     f_large = pygame.font.Font(None, 100)
     f_small = pygame.font.Font(None, 80)
-    f_extrasmall = pygame.font.Font(None, 70)
+    f_extrasmall = pygame.font.Font(None, 50)
     gameovertexts = [
         [f_large.render("GAME OVER", True, (255, 255, 255)), 100],
-        [f_extrasmall.render("Credits", True, (255, 255, 255)), 290],
-        [f_small.render("Juhani", True, (255, 255, 255)), 350],
-        [f_small.render("Tuomas", True, (255, 255, 255)), 410],
-        [f_small.render("Petteri", True, (255, 255, 255)), 470]
+        [f_extrasmall.render("Credits", True, (255, 255, 255)), 300],
+        [f_small.render("Juhani . code", True, (255, 255, 255)), 350],
+        [f_small.render("Tuomas . code", True, (255, 255, 255)), 410],
+        [f_small.render("Petteri . gfx", True, (255, 255, 255)), 470],
+        [f_extrasmall.render("Music used with permission of", True, (255, 255, 255)), 550],
+        [f_small.render("Heikki Anttonen", True, (255, 255, 255)), 600],
     ]
 
     while gameoverloop:
