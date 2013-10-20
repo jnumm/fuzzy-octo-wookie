@@ -25,7 +25,12 @@ class Enemy(pygame.sprite.Sprite):
         self.bullets = pygame.sprite.RenderPlain()
 
     def update(self):
-        if random.random() < 0.1:
+        if random.random()  < 0.3:
+            if random.random() < 0.5:
+                self.rect.move_ip (3, 0)
+            else:
+                self.rect.move_ip (-3, 0)
+        if random.random() > 0.1:
             self.shooting = True
             self.shoot()
 
