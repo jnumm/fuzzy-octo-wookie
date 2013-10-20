@@ -66,8 +66,8 @@ def main():
         train_sprites.update()
         character_sprites.update()
         enemy1.bullets.update()
-        if (not car1.rect.colliderect(player.rect) and
-                not car2.rect.colliderect(player.rect) and
+        if (not car1.rect.contains(player.rect) and
+                not car2.rect.contains(player.rect) and
                 player.jump == 0):
             mainloop = False
             gameoverloop = True
