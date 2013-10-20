@@ -21,9 +21,9 @@ class Moving(pygame.sprite.Sprite):
 
     def update(self):
         if self.type == const.MOVING_BG:
-            self.rect.move_ip(0, 5)
+            self.rect.move_ip(0, 10)
         elif self.type == const.MOVING_TRAINCAR:
-            self.rect.move_ip(0, 2)
+            self.rect.move_ip(0, 4)
 
         if self.rect.top > const.DISPLAY_HEIGTH:
             self.rect.bottom = 0
