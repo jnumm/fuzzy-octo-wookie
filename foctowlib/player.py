@@ -2,8 +2,6 @@
 """The player Sprite. It will listen to user input.
 """
 
-import random
-
 import pygame
 
 from . import const
@@ -55,11 +53,6 @@ class Player(pygame.sprite.Sprite):
             self.rect.move_ip(2, 0)
         if keys[pygame.K_SPACE] and self.jump == 0:
             self.jump = 1
-
-        if random.random() < 0.1:
-            self.windspeed = random.randint(-3, 3)
-        if self.windspeed > 0:
-            self.rect.move_ip(self.windspeed, 0) 
 
         t = pygame.time.get_ticks()
         if not self.jump and t - self._last_update > self._delay:
