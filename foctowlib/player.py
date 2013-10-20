@@ -28,6 +28,8 @@ class Player(pygame.sprite.Sprite):
         self.jump = 0
         self.windspeed = 0
 
+        self.die_snd = misc.load_sound("scream.ogg")
+
     def update(self):
         keys = pygame.key.get_pressed()
 
@@ -69,3 +71,6 @@ class Player(pygame.sprite.Sprite):
             self.image = self._images[self._frame]
 
             self._last_update = t
+
+    def dying(self):
+        self.die_snd.play()
