@@ -71,6 +71,7 @@ def main():
                 player.jump == 0) or
                 (player.rect.contains(enemy1.bullet.rect) and
                 player.jump == 0)):
+            player.dying()
             mainloop = False
             gameoverloop = True
 
