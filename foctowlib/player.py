@@ -4,12 +4,14 @@
 
 import pygame
 
+from . import const
 from . import misc
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image, self.rect = misc.load_image('player.png')
+        self.rect.centerx = const.DISPLAY_WIDTH / 2
         self.orig_image = self.image
         self.jump = 0
 
