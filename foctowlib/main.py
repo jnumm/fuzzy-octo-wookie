@@ -5,7 +5,6 @@
 import pygame
 
 from . import const
-from . import conversation
 from . import moving
 from .player import *
 
