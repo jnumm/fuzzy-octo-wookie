@@ -12,7 +12,7 @@ from . import misc
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self._images = misc.load_sliced_sprites(160, 106, "player_ng.png")
+        self._images = misc.load_sliced_sprites(170, 106, "player_ng.png")
 
         self.rect = self._images[0].get_rect()
         self.rect.centerx = const.DISPLAY_WIDTH / 2
@@ -25,7 +25,8 @@ class Player(pygame.sprite.Sprite):
         self._delay = 60
         self._last_update = 0
         self._frame = 0
-
+        self.frame_decrease = False
+        
         self.jump = 0
         self.windspeed = 0
 
@@ -62,7 +63,18 @@ class Player(pygame.sprite.Sprite):
 
         t = pygame.time.get_ticks()
         if not self.jump and t - self._last_update > self._delay:
-            self._frame += 1
-            if self._frame >= len(self._images): self._frame = 0
+            if self.frame_decrease:
+                self._frame -= 1
+            else:
+                self._frame += 1
+
+            if self._frame == len(self._images) - 1:
+                self.frame_decrease = True
+            elif self._frame == 0:
+                self.frame_decrease = False
+
+            print self._frame
             self.image = self._images[self._frame]
+            
+            
             self._last_update = t
