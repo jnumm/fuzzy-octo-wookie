@@ -65,7 +65,7 @@ def main():
             mainloop = False
             gameoverloop = True
 
-        if not the_box.alive() and pygame.time.get_ticks() > 3000:
+        if not the_box.alive() and pygame.time.get_ticks() > 5000:
             character_sprites.add(the_box)
 
         if the_box.alive() and the_box.rect.colliderect(player.rect):

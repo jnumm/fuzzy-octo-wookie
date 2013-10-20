@@ -20,10 +20,14 @@ class Moving(pygame.sprite.Sprite):
         self.rect.top = ypos
 
     def update(self):
-        if self.type == const.MOVING_BG:
-            self.rect.move_ip(0, 10)
+        if self.type == const.MOVING_BG and pygame.time.get_ticks() > 3000:
+            self.rect.move_ip(0, 20)
+        elif self.type == const.MOVING_BG:
+			self.rect.move_ip(0, 10)    
+        elif self.type == const.MOVING_TRAINCAR and pygame.time.get_ticks() > 3000: 
+            self.rect.move_ip(0, 8)
         elif self.type == const.MOVING_TRAINCAR:
-            self.rect.move_ip(0, 4)
+			self.rect.move_ip(0, 4)    
 
         if self.rect.top > const.DISPLAY_HEIGTH:
             self.rect.bottom = 0
