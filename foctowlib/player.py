@@ -12,7 +12,7 @@ from . import misc
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self._images = misc.load_sliced_sprites(100, 70, "player_ng.png")
+        self._images = misc.load_sliced_sprites(160, 106, "player_ng.png")
 
         self.rect = self._images[0].get_rect()
         self.rect.centerx = const.DISPLAY_WIDTH / 2
