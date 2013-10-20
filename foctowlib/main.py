@@ -24,7 +24,7 @@ def main():
     pygame.mixer.pre_init(44100, -16, 2)
     pygame.init()
     display = pygame.display.set_mode(const.DISPLAY_SIZE)
-    pygame.display.set_caption("GameJam")
+    pygame.display.set_caption("Fuzzy Octo-Wookie :: JGJ '13")
     clock = pygame.time.Clock()
 
     mainloop = True
@@ -72,7 +72,7 @@ def main():
             mainloop = False
             gameoverloop = True
 
-        if not the_box.alive() and pygame.time.get_ticks() > 5000:
+        if not the_box.alive() and pygame.time.get_ticks() > 90000:
             character_sprites.add(the_box)
 
         if the_box.alive() and the_box.rect.colliderect(player.rect):
