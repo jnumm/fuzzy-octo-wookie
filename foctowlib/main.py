@@ -7,6 +7,7 @@ import os
 import pygame
 
 from . import box
+from . import chopper
 from . import const
 from . import moving
 from .player import *
@@ -39,6 +40,9 @@ def main():
     character_sprites = pygame.sprite.RenderPlain((player))
 
     the_box = box.Box()
+
+    choppa = chopper.Chopper()
+    chopper_sprites =  pygame.sprite.RenderPlain((choppa))
 
     pygame.mixer.music.load(os.path.join("assets", "snd", "music.mp3"))
     pygame.mixer.music.play(-1)
@@ -81,10 +85,17 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        if choppa.rect.contains(player.rect):
+            player.kill()
+            the_box.kill()
+        
+        chopper_sprites.update()
+
         display.fill((0, 0, 0))
         bg_sprites.draw(display)
         train_sprites.draw(display)
         character_sprites.draw(display)
+        chopper_sprites.draw(display)
         pygame.display.flip()
 
     f_large = pygame.font.Font(None, 100)
