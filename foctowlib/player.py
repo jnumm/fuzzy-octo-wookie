@@ -4,7 +4,7 @@
 
 import pygame
 
-import misc
+from . import misc
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):

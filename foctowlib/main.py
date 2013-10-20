@@ -4,9 +4,9 @@
 
 import pygame
 
-import const
-import moving
-from player import *
+from . import const
+from . import moving
+from .player import *
 
 def main():
     """This is the main game function. It will initialize and run

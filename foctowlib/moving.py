@@ -2,8 +2,8 @@
 
 import pygame
 
-import const
-import misc
+from . import const
+from . import misc
 
 class Moving(pygame.sprite.Sprite):
     """A moving object, either a background image or a train car.
