@@ -6,6 +6,7 @@ import os
 
 import pygame
 
+from . import box
 from . import const
 from . import moving
 from .player import *
@@ -22,6 +23,8 @@ def main():
     clock = pygame.time.Clock()
 
     mainloop = True
+    gameoverloop = False
+    gamewonloop = False
 
     bg1 = moving.Moving(const.MOVING_BG)
     bg2 = moving.Moving(const.MOVING_BG, bg1.rect.height)
@@ -34,6 +37,8 @@ def main():
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
     character_sprites = pygame.sprite.RenderPlain((player))
+
+    the_box = box.Box()
 
     pygame.mixer.music.load(os.path.join("assets", "snd", "music.mp3"))
     pygame.mixer.music.play(-1)
@@ -55,6 +60,26 @@ def main():
                 player.jump == 0):
             mainloop = False
             gameoverloop = True
+
+        if not the_box.alive() and pygame.time.get_ticks() > 3000:
+            character_sprites.add(the_box)
+
+        if the_box.alive() and the_box.rect.colliderect(player.rect):
+            mainloop = False
+            gamewonloop = True
+
+        display.fill((0, 0, 0))
+        bg_sprites.draw(display)
+        train_sprites.draw(display)
+        character_sprites.draw(display)
+        pygame.display.flip()
+
+    while gamewonloop:
+        clock.tick(60)
+        # Quit the program on a pygame.QUIT event.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
 
         display.fill((0, 0, 0))
         bg_sprites.draw(display)
