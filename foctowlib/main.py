@@ -3,12 +3,14 @@
 """
 
 import os
+import random
 
 import pygame
 
 from . import box
 from . import chopper
 from . import const
+from . import enemy
 from . import moving
 from .player import *
 
@@ -16,6 +18,8 @@ def main():
     """This is the main game function. It will initialize and run
     the game itself.
     """
+    # Initializing random.
+    random.seed()
     # Initializing pygame and pygame-related variables.
     pygame.mixer.pre_init(44100, -16, 2)
     pygame.init()
@@ -37,7 +41,9 @@ def main():
 
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
-    character_sprites = pygame.sprite.RenderPlain((player))
+
+    enemy1 = enemy.Enemy()
+    character_sprites = pygame.sprite.RenderPlain((player, enemy1))
 
     the_box = box.Box()
 
@@ -59,6 +65,7 @@ def main():
         bg_sprites.update()
         train_sprites.update()
         character_sprites.update()
+        enemy1.bullets.update()
         if (not car1.rect.contains(player.rect) and
                 not car2.rect.contains(player.rect) and
                 player.jump == 0):
@@ -76,6 +83,7 @@ def main():
         bg_sprites.draw(display)
         train_sprites.draw(display)
         character_sprites.draw(display)
+        enemy1.bullets.draw(display)
         pygame.display.flip()
 
     while gamewonloop:
