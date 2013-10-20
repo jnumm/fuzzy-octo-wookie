@@ -2,6 +2,8 @@
 """This module contains the main game function.
 """
 
+import os
+
 import pygame
 
 from . import const
@@ -13,6 +15,7 @@ def main():
     the game itself.
     """
     # Initializing pygame and pygame-related variables.
+    pygame.mixer.pre_init(44100, -16, 2)
     pygame.init()
     display = pygame.display.set_mode(const.DISPLAY_SIZE)
     pygame.display.set_caption("GameJam")
@@ -31,6 +34,9 @@ def main():
     player = Player()
     player.rect.centery = const.DISPLAY_HEIGTH / 2
     character_sprites = pygame.sprite.RenderPlain((player))
+
+    pygame.mixer.music.load(os.path.join("assets", "snd", "music.mp3"))
+    pygame.mixer.music.play(-1)
 
     # This is the main loop.
     while mainloop:
