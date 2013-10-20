@@ -16,7 +16,10 @@ class Chopper(pygame.sprite.Sprite):
         self.landing = 0
         self.orig_image = self.image
 
+        self.chopper_snd = misc.load_sound("chopper.ogg")
+
     def update(self):
+        self.chopper_snd.play()
         if self.landing > 0 and self.landing < 30:
             self.image = pygame.transform.scale(self.orig_image,
                     (self.image.get_width() - 1,
