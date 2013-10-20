@@ -66,9 +66,11 @@ def main():
         train_sprites.update()
         character_sprites.update()
         enemy1.bullets.update()
-        if (not car1.rect.contains(player.rect) and
+        if ((not car1.rect.contains(player.rect) and
                 not car2.rect.contains(player.rect) and
-                player.jump == 0):
+                player.jump == 0) or
+                (player.rect.contains(enemy1.bullet.rect) and
+                player.jump == 0)):
             mainloop = False
             gameoverloop = True
 
@@ -82,10 +84,17 @@ def main():
         display.fill((0, 0, 0))
         bg_sprites.draw(display)
         train_sprites.draw(display)
-        character_sprites.draw(display)
         enemy1.bullets.draw(display)
+        character_sprites.draw(display)
         pygame.display.flip()
-
+    
+    if gamewonloop:
+        win_or_not = "YOU WON!"
+        reason = ""
+    else:
+        win_or_not = "GAME OVER"
+        reason = "You died."
+    
     while gamewonloop:
         clock.tick(60)
         # Quit the program on a pygame.QUIT event.
@@ -120,7 +129,8 @@ def main():
     f_small = pygame.font.Font(None, 80)
     f_extrasmall = pygame.font.Font(None, 50)
     gameovertexts = [
-        [f_large.render("GAME OVER", True, (255, 255, 255)), 100],
+        [f_large.render(win_or_not, True, (255, 255, 255)), 100],
+        [f_extrasmall.render(reason, True, (255, 255, 255)), 160],
         [f_extrasmall.render("Credits", True, (255, 255, 255)), 300],
         [f_small.render("Juhani . code", True, (255, 255, 255)), 350],
         [f_small.render("Tuomas . code", True, (255, 255, 255)), 410],
