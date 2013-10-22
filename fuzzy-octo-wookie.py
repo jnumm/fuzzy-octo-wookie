@@ -1,6 +1,6 @@
-#!/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import foctowlib.main
+import octowookielib.main
 
-foctowlib.main.main()
+octowookielib.main.main()
